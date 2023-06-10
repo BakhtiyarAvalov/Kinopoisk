@@ -4,3 +4,5 @@
 @import url('vendor/same.css');
 @import url('pages/index.css');
 @import url('components/form.css');
+@import url('pages/profile.css');
+@import url('pages/admin.css');
