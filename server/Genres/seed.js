@@ -32,14 +32,14 @@ const data = [
     
 ]
 async function writeDataGenre(){
-    const langth = await Genres.count();
+    const length = await Genres.count();
     if(length == 0){
         data.map((item, index) => {
             new Genres({
                 name: item, 
-                kay: index
+                key: index
             }).save()
         })
     }
 }
-module.exports = writeDataGenre
+module.exports = writeDataGenre;
