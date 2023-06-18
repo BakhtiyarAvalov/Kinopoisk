@@ -40,8 +40,9 @@
                 <fieldset class="fieldset">
                     <label for="">Введите жанр</label>
                     <select name="gener" id="">
-                        <option value="">Драмма</option>
-                        <option value="">Комедия</option>
+                        <% genres.forEach(genre => { %>
+                             <option value=""><%= genre.name %></option>
+                        <% }) %>
                     </select>
                 </fieldset>
                 <fieldset class="fieldset">  

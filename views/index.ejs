@@ -9,9 +9,10 @@
     <div class="container">
         <div class="main">
             <div class="categories">
-                <a href="">Драмма</a>
-                <a href="">Комедии</a>
-                <a href="">Ужасы</a>
+                <h3>Жанры</h3>
+                <% genres.forEach(genre => { %>
+                    <a href="/<%=genre.key%>"> <%= genre.name %> </a>
+                <% }) %>
             </div>
             <div class="main-content">
                 <h3>фильмы и сериалы</h3>
