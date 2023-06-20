@@ -26,5 +26,14 @@ const signUp = async(req, res)=>{
             res.redirect('/login')
         })
     })
+};
+
+const signIn = (req, res) => {
+    res.redirect('/profile')
 }
-module.exports = {signUp}
+
+module.exports = 
+{
+    signUp, 
+    signIn,
+}
