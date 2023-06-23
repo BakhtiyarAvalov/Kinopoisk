@@ -20,15 +20,15 @@
     </div>
     <div class="head-buttons">
         <%
-            if(user._id && user.full_name >0){
+            if(user._id){
         %>
-                <a href="/profile">Профиль</a>
+                <a href="/profile/<%=user._id%>">Профиль</a>
         <%
             }else{
         %>
                 <a href="/login">Войти</a>
         <%
-            }
+            };
         %>
     </div>
 </header>
