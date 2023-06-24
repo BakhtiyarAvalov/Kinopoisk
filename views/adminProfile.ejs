@@ -9,9 +9,10 @@
     <div class="container">
         <div class="main">
             <div class="categories">
-                <a href="">Драмма</a>
-                <a href="">Комедии</a>
-                <a href="">Ужасы</a>
+                <h3>Жанры</h3>
+                <% genres.forEach(genre =>{ %>
+                    <a href="<%= genre.name  %>"></a>
+                <% }); %>
             </div>
             <div class="main-content">
                 <h3>Профиль</h3>
@@ -20,14 +21,13 @@
                         <img src="/images/icons/Avatar.png" alt="">
                     </div>
                     <div class="profile-info">
-                        <p><span>Полное имя:</span>   Авалов Бахтияр</p>
-                        <p><span>E-mail:</span>   Avalov90@mail.ru</p>
-                        <button class="edit-btn">Редактировать профиль</button>
-                        <button class="logoout-btn">Выход</button>
+                        <p><span>Полное имя:</span><%= user.full_name %></p>
+                        <p><span>E-mail:</span><%= user.email %></p>
+                        <a class="edit-btn">Редактировать профиль</a>
+                        <a href="/api/signout" class="logoout-btn">Выход</a>
                     </div>
                 </div>
-                
-                <h3>Сохраненные фильмы</h3>
+                <h3>Фильмы</h3>
                 <a href="/new" class="add-btn"> Добавить фильм</a>
                 <div class="main-card">
                     <div class="card-left">

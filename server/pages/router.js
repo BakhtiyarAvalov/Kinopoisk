@@ -22,14 +22,16 @@ router.get('/profile/:id', async(req, res)=>{
     const allGenres = await Genres.find();
     const user = await User.findById(req.params.id)
     if(user){
-        res.render("profile.ejs", {user: user, genres: allGenres, loginUser: req.user})
+        res.render("profile.ejs", {genres: allGenres, user: user, loginUser: req.user})
     }else{
         res.redirect('/not-found')
     }
 });
 
-router.get('/admin', (req, res)=>{
-    res.render("adminProfile.ejs", {user: req.user ? req.user : {}})
+router.get('/admin/:id', async(req, res)=>{
+    const allGenres = await Genres.find();
+    const user = await User.findById(req.params.id)
+    res.render("adminProfile.ejs", {genres: allGenres, user: user, loginUser: req.user ? req.user : {}})
 })
 
 router.get('/new', async(req, res)=>{
@@ -45,6 +47,6 @@ router.get('/edit', async(req, res)=>{
 })
 
 router.get('/not-found', (req, res)=>{
-    res.render("notFound")
+    res.render("notFound.ejs")
 })
 module.exports = router
