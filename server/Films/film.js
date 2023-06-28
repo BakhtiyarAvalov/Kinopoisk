@@ -5,8 +5,8 @@ const FilmSchema = new mongoose.Schema({
     titleEng: String,
     year: Number,
     time: String,
-    country: String,
-    gener: String,
+    country: {type: Schema.Types.ObjactId, ref: 'Country'},
+    gener: {type: Schema.Types.ObjactId, ref: 'Genre'},
     Image: String
 })
 module.exports = mongoose.model('film', FilmSchema)

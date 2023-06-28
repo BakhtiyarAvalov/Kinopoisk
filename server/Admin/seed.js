@@ -5,6 +5,7 @@ async function createAdmin(){
     if(findAdmin == 0){
         bcrypt.genSalt(10, (err, salt) =>{
             bcrypt.hash( '1' , salt , function(err , hash){
+                console.log(hash);
                 new User({
                     full_name: 'Master',
                     email: 'master@mail.ru',
