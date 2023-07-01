@@ -8,7 +8,7 @@ const Film = require('../Films/film')
 router.get('/', async(req, res) =>{
     const allGenres = await Genres.find()
     const getAllCountries = await Country.find()
-    const films = await Film.find()
+    const films = await Film.find().populate('country').populate('genre')
     res.render("index.ejs" , {genres: allGenres, user: req.user ? req.user : {}, films})
 })
 
