@@ -1,13 +1,15 @@
 const express = require('express')
 const router = express.Router();
-const Genres = require('../Genres/Genres')
-const Country = require('../Country/Country')
-const User = require('../auth/user')
+const Genres = require('../Genres/Genres');
+const Country = require('../Country/Country');
+const User = require('../auth/user');
+const Film = require('../Films/film')
 
 router.get('/', async(req, res) =>{
     const allGenres = await Genres.find()
     const getAllCountries = await Country.find()
-    res.render("index.ejs" , {genres: allGenres, user: req.user ? req.user : {}})
+    const films = await Film.find()
+    res.render("index.ejs" , {genres: allGenres, user: req.user ? req.user : {}, films})
 })
 
 router.get('/login', (req, res)=>{
