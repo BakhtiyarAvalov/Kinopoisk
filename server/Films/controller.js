@@ -1,6 +1,10 @@
 const Film = require('./film')
 
 const createFilm = (req, res) => {
+    // console.log(req.body)
+    // console.log(req.user)
+    // console.log(req.file)
+
     if(req.file && req.body.titleRus.length > 2 &&
         req.body.titleEng.length > 2 &&
         req.body.year > 0 &&
@@ -14,7 +18,7 @@ const createFilm = (req, res) => {
                 year: req.body.year,
                 time: req.body.time,
                 country: req.body.country,
-                gener: req.body.gener,
+                genre: req.body.genre,
                 image: `${req.file.destination}/${req.file.filename}`,
                 author: req.user._id,
             }).save()
