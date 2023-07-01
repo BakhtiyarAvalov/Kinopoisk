@@ -22,8 +22,24 @@ const createFilm = async(req, res) => {
         }else{
             res.redirect('/new?error1')
         }
+};
+
+const editFilm = (req, res)=>{
+    if(req.file && req.body.titleRus.length > 2 &&
+        req.body.titleEng.length > 2 &&
+        req.body.year > 0 &&
+        req.body.time > 0 &&
+        req.body.country.length > 2 &&
+        req.body.genre.length > 2
+        ){
+
+        }else{
+           res.redirect(`/edit/${req.body.id}?error=1`)
+        }
 }
 
+
 module.exports ={
-    createFilm
+    createFilm,
+    editFilm,
 };
