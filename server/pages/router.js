@@ -3,7 +3,7 @@ const router = express.Router();
 const Genres = require('../Genres/Genres');
 const Country = require('../Country/Country');
 const User = require('../auth/user');
-const Film = require('../Films/film')
+const Film = require('../Films/film');
 
 router.get('/', async(req, res) =>{
     const allGenres = await Genres.find()
