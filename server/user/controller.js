@@ -1,9 +1,9 @@
 const user = require('../auth/user');
 
-const saveToWotch = (req, reqs) =>{
+const saveToWatch = (req, reqs) =>{
     console.log(req.body);
 }
 
 module.exports = {
-    saveToWotch
+    saveToWatch
 }

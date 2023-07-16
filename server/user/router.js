@@ -1,7 +1,7 @@
 const express = require('express');
 
 const router = express.Router();
-const saveToWotch = require('./controller');
+const {saveToWatch} = require('./controller');
 
-router.post('/api/saveToWotch', saveToWotch)
+router.post('/api/saveToWatch', saveToWatch)
 module.exports = router
