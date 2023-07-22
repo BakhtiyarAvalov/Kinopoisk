@@ -16,7 +16,7 @@ router.get('/', async(req, res) =>{
     if(req.query.page && req.query.page > 0){
         page = req.query.page
     }
-    const totalFilms = await Film.count()
+    const totalFilms = await Film.count(options)
     const allGenres = await Genres.find()
     const films = await Film.find(options).limit(limit).skip(page * limit).populate('country').populate('genre')
     const user = req.user ? await User.findById(req.user._id) : {}

@@ -7,7 +7,7 @@ function saveToWatch(id){
     })
 }
 function deleteFromToWotch(id){
-  axios.delete(`/api/films/save ${id}`).then(data =>{
+  axios.delete(`/api/films/save/${id}`).then(data =>{
     if (data.status == 200){
       alert(data.data)
       location.reload()  

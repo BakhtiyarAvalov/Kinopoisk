@@ -10,9 +10,13 @@
         <div class="main">
             <div class="categories">
                 <h3>Жанры</h3>
-            <% genres.forEach((genre)=>{ %>
-                <a href=""><%= genre.name %></a>
-            <% }); %>    
+                <% 
+                    genres.forEach(genre => { 
+                %>
+                        <a href="?genre= <%= genre.key %>"> <%= genre.name %> </a>
+                <% 
+                    }); 
+                %>
             </div>
             <div class="main-content">
                 <h3>Профиль</h3>
@@ -53,7 +57,7 @@
                         <div class="film-rate">
                             <p>7/3</p>
                         </div>
-                        <button class="film-btn" onclick="deleteFromToWotch(`<%= film._id %>`)">
+                        <button class="film-btn" onclick="deleteFromToWatch(`<%= film._id %>`)">
                             <img src="/images/icons/save.png" alt="">
                             Сохранено
                         </button>

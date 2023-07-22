@@ -91,7 +91,7 @@ const saveFilm = async(req, res) => {
     }
 }
 
-const deleteFromToWotch = async(req, res) => {
+const deleteFromToWatch = async(req, res) => {
     if(req.params.id){
         const user = await User.findById(req.user.id)
         for(let i = 0; i < user.toWatch.length; i++){
@@ -109,5 +109,5 @@ module.exports ={
     editFilm,
     deleteFilms, 
     saveFilm,
-    deleteFromToWotch
+    deleteFromToWatch
 };
