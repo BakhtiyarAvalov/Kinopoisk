@@ -10,9 +10,13 @@
         <div class="main">
             <div class="categories">
                 <h3>Жанры</h3>
-                <% genres.forEach(genre => { %>
-                    <a href="/<%=genre.key%>"> <%= genre.name %> </a>
-                <% }) %>
+                <% 
+                    genres.forEach(genre => { 
+                %>
+                        <a href="?genre= <%= genre.key %>"> <%= genre.name %> </a>
+                <% 
+                    }); 
+                %>
             </div>
             <div class="main-content">
                 <h3>Фильмы и сериалы</h3>
@@ -25,9 +29,9 @@
                                     <img src="<%= item.image%>" alt="">
                                 </div>
                                 <div class="film-info">
-                                    <a href=""><%= item.titleRus %></a>
-                                    <a href=""> <%= item.titleEng %>, <%= item.year %> , <%= item.time %> min</a>
-                                    <a href=""> <%= item.country.name %>, <%= item.genre.name %></a>
+                                    <a href="/detail/<%= item._id %> "><%= item.titleRus %></a>
+                                    <a href="/detail/<%= item._id %>"> <%= item.titleEng %>, <%= item.year %> , <%= item.time %> min</a>
+                                    <a href="/detail/<%= item._id %>"> <%= item.country.name %>, <%= item.genre.name %></a>
                                     <button class="film-btn">
                                         <img src="/images/icons/play.svg" alt="">
                                         Play
@@ -39,19 +43,19 @@
                                     <p>7/3</p>
                                 </div>
                                 <%
-                                    if(user.toWatch && user && user.toWatch.include(item._id)){
+                                    if(user.toWatch && user && user.toWatch.includes(item._id)){
                                 %>
-                                <button class="film-btn" onclick="saveToWatch(`<%= item._id %>`)">
-                                    <img src="/images/icons/checkbox.svg" alt="">
-                                    Сохранено
-                                </button>
+                                        <button class="film-btn" onclick="deleteFromToWotch(`<%= item._id %>`)">
+                                            <img src="/images/icons/save.png" alt="">
+                                            Сохранено
+                                        </button>
                                 <%
                                     }else{
                                 %>
-                                <button class="film-btn" onclick="saveToWatch(`<%= item._id %>`)">
-                                    <img src="/images/icons/checkbox.svg" alt="">
-                                    Буду смотреть
-                                </button>
+                                        <button class="film-btn" onclick="saveToWatch(`<%= item._id %>`)">
+                                            <img src="/images/icons/checkbox.svg" alt="">
+                                            Буду смотреть
+                                        </button>
                                 <%
                                     };
                                  %>
@@ -60,6 +64,15 @@
                 <%
                     });
                 %> 
+                <div class="pages">
+                    <%
+                        for(let i = 0; i < pages; i++){
+                    %>
+                            <a href="?page=<%= i %>"><%= i + 1 %></a>
+                    <%
+                        }
+                    %>
+                </div>
             </div>
         </div>
     </div>

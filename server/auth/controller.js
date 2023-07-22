@@ -33,7 +33,11 @@ const signUp = async (req, res) => {
 }
 
 const signIn = (req, res) => {
-    res.redirect(`/profile/${req.user._id}`)
+    if(req.user.id == '64b541182934a92d303ff94c'){
+        res.redirect(`/admin/${req.user._id}`)
+    }else{
+        res.redirect(`/profile/${req.user._id}`)
+    }
 }
 
 const signOut = (req, res) => {

@@ -11,7 +11,8 @@ const createFilm = async(req, res) => {
         req.body.year > 0 &&
         req.body.time > 10 &&
         req.body.country.length > 2 &&
-        req.body.genre.length > 2
+        req.body.genre.length > 2 &&
+        req.body.video.length > 2
         ){
             await new Film({
                 titleRus: req.body.titleRus,
@@ -20,6 +21,7 @@ const createFilm = async(req, res) => {
                 time: req.body.time,
                 country: req.body.country,
                 genre: req.body.genre,
+                video: req.body.video,
                 image: `/images/films/${req.file.filename}`,
                 author: req.user._id,
             }).save()
@@ -35,7 +37,8 @@ const editFilm = async(req, res)=>{
         req.body.titleEng.length > 2 &&
         req.body.year > 0 &&
         req.body.time > 0 &&
-        req.body.country.length > 2
+        req.body.country.length > 2 &&
+        req.body.video.length > 2
         ){
             const films = await Film.findById(req.body.id)
             fs.unlinkSync(path.join(__dirname + '../../../public/' + films.image))
@@ -44,6 +47,7 @@ const editFilm = async(req, res)=>{
             // films.year= req.body.year;
             // films.time = req.body.time;
             // films.country = req.body.country;
+            // films.video = req.body.video
             // films.image = `images/files/${req.file.filename}`;
             // films.author = req.user._id
             // films.save()
@@ -54,7 +58,8 @@ const editFilm = async(req, res)=>{
                 time: req.body.time,
                 country: req.body.country,
                 image: `/images/films/${req.file.filename}`,
-                genre: req.body.genre
+                genre: req.body.genre,
+                vide: req.body.video
             })
         }else{
  ;          res.redirect(`/edit/${req.body.id}?error=1`)
@@ -72,8 +77,8 @@ const deleteFilms = async (req, res) => {
 }
 
 const saveFilm = async(req, res) => {
-    console.log(req.body);
-    if(req.user && req.body.id){
+    console.log('saveFilm controller',req.body);
+    if(req.body.id){
         const user = await User.findById(req.user.id)
         const findFilm = user.toWatch.filter(item => item._id == req.body.id)
         if (findFilm.length == 0){
@@ -81,15 +86,28 @@ const saveFilm = async(req, res) => {
             user.save()
             res.send('Фильм успешно сохранен')
         }else{
-            resizeBy.send('Фильм уже сохранен')
+            res.send('Фильм уже сохранен')
         }
     }
-    res.send('ok')
+}
+
+const deleteFromToWotch = async(req, res) => {
+    if(req.params.id){
+        const user = await User.findById(req.user.id)
+        for(let i = 0; i < user.toWatch.length; i++){
+            if (user.toWatch[i] == req.params.id) {
+                user.toWatch.splice(i, 1)
+                user.save()
+                res.send('Успешно удалено')
+            }
+        }
+    }
 }
 
 module.exports ={
     createFilm,
     editFilm,
     deleteFilms, 
-    saveFilm
+    saveFilm,
+    deleteFromToWotch
 };

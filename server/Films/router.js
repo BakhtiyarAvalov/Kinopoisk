@@ -2,11 +2,14 @@ const express = require('express');
 
 const router = express.Router();
 const{upload} = require('./multer');
-const {createFilm, editFilm, deleteFilms, saveFilm} = require('./controller');
-const {isAuth} = require('../auth/middlewares')
+const {createFilm, editFilm, deleteFilms, saveFilm, deleteFromToWotch} = require('./controller');
+const {isAdmin, isAuthUser} = require('../auth/middlewares')
 
-router.post('/api/films/new', isAuth, upload.single('image'), createFilm);
-router.post('/api/films/edit', isAuth, upload.single('image'), editFilm);
-router.delete('/api/films/:id', isAuth, deleteFilms);
-router.post('/api/films/save', isAuth, saveFilm)
+router.post('/api/films/new', isAdmin, upload.single('image'), createFilm);
+router.post('/api/films/edit', isAdmin, upload.single('image'), editFilm);
+router.delete('/api/films/:id', isAdmin, deleteFilms);
+router.post('/api/films/save', isAuthUser, saveFilm)
+router.delete('/api/films/save/:id', isAuthUser, deleteFromToWotch);
+
+
 module.exports = router;
