@@ -16,7 +16,7 @@
                     <h2><%= film.titleRus %> (<%= film.year %>)</h2>
                     <p><%= film.titleEng %></p>
                     <%
-                        if(user.ToWatch.includes(film._id)){
+                        if(user && user.toWatch && user.toWatch.includes(film._id)){
                     %>
                             <button class="film-btn" onclick="deleteFromToWotch(`<%= film._id %>`)">
                                 <img src="/images/icons/save.png" alt="">
@@ -60,6 +60,37 @@
             <%
                 };
             %>
+            <div class="comments">
+                <h3>Comments</h3>
+                <%
+                    if(user && user._id){
+                %>
+                <form action="" class="add-comment-form">
+                    <p>Оцените фильм</p>
+                    <div class="comment-stars">
+                        <img onclick="rateFilm(1)" src="/images/icons/star.svg" alt="">
+                        <img onclick="rateFilm(2)" src="/images/icons/star.svg" alt="">
+                        <img onclick="rateFilm(3)" src="/images/icons/star.svg" alt="">
+                        <img onclick="rateFilm(4)" src="/images/icons/star.svg" alt="">
+                        <img onclick="rateFilm(5)" src="/images/icons/star.svg" alt="">
+                    </div>
+                    <p>Напишите комментарий</p>
+                    <textarea name="text" id="" cols="30" rows="10"></textarea>
+                    <button>save</button>   
+                </form>
+                <%
+                    }else{
+                %>
+                        <p>
+                            <a href="/login">Войдите</a>
+                            или
+                            <a href="/register">Зарегистритуйтесь</a>
+                            чтобы оставить коммен
+                        </p>
+                <%
+                    }
+                %>
+            </div>
         </div>
     </div>
     <%- include('partials/scripts.ejs') %>
