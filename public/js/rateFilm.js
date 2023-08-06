@@ -16,6 +16,10 @@ function sendRate(e){
     const film = document.querySelector('#comment-film').value
 
     if(activeStars.length > 0){
-        axios.post('/api/rate' , {rate: activeStars.length, text: comment_text , authorId: author , filmId: film})
+        axios.post('/api/rate' , {rate: activeStars.length, text: comment_text , authorId: author , filmId: film,}).then(data => {
+            if(data.data){
+                location.reload()
+            }
+        })
     }
 }

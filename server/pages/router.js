@@ -4,6 +4,7 @@ const Genres = require('../Genres/Genres');
 const Country = require('../Country/Country');
 const User = require('../auth/user');
 const Film = require('../Films/film');
+const Rate = require('../Rates/Rates')
 
 router.get('/', async(req, res) =>{
     const options = {}
@@ -80,8 +81,14 @@ router.get('/not-found', (req, res)=>{
 })
 
 router.get('/detail/:id', async(req, res)=>{
-    const film = await Film.findById(req.params.id).populate('country').populate('genre')
-    res.render("detail.ejs", {user: req.user ? req.user: {}, film: film})
+    const rates = await Rate.find({filmId: req.params.id}).populate('authorId')
+    let averageRate = 0;
+    for(let i = 0; i<rates.length; i++){
+        averageRate+= rates[i].rate
+    }
+    const film = await Film.findById(req.params.id).populate('country').populate('genre').populate('author')
+    res.render("detail.ejs", {user: req.user ? req.user: {}, film: film, rates: rates, averageRate: (averageRate / rates.length).toFixed(1)})
+
 })
 
 module.exports = router

@@ -77,7 +77,7 @@ const deleteFilms = async (req, res) => {
 }
 
 const saveFilm = async(req, res) => {
-    console.log('saveFilm controller',req.body);
+    // console.log('saveFilm controller',req.body);
     if(req.body.id){
         const user = await User.findById(req.user.id)
         const findFilm = user.toWatch.filter(item => item._id == req.body.id)

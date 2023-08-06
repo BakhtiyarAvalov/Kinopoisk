@@ -6,7 +6,10 @@ const RateSchema = new mongoose.Schema({
     text: String,
     filmId: {type: Schema.Types.ObjectId, ref: 'film'},
     authorId: {type: Schema.Types.ObjectId, ref: 'user'},
-    timesTamps: {date: 'date'}
+    date: {
+        type: Date,
+        default: Date.now()
+    }
 })
 module.exports = mongoose.model('rate', RateSchema)
 
