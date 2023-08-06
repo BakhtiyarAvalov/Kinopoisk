@@ -11,5 +11,9 @@ router.get('/api/signout', signOut);
 router.get('/api/auth/google', passport.authenticate('google'), (req, res) => {
     res.redirect('/profile/' + req.user._id)
 })
-createAdmin();
+router.get('/api/auth/GitHub', passport.authenticate('github'), (req, res) => {
+    res.redirect('/profile/' + req.user._id);
+})
+
+  createAdmin();
 module.exports = router;
